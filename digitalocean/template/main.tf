@@ -41,6 +41,8 @@ resource "digitalocean_droplet" "web" {
       "/etc/init.d/shadowsocks-libev start",
       "systemctl start shadowsocks-libev",
       "systemctl enable shadowsocks-libev",
+      "sleep 5",
+      "systemctl restart shadowsocks-libev",
     ]
   }
 

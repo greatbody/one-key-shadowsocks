@@ -1,28 +1,30 @@
 #!/bin/sh
 
-echo $OSTYPE
-
-DO_TOKEN=""
+export DO_TOKEN=""
 # [nyc1, nyc3, sfo2, ams3, sgp1, lon1, fra1, tor1, blr1]
-DROPLET_REGION=""
+export DROPLET_REGION=""
 # select your port where server provide shadowsocks service
-SERVER_PORT=
+export SERVER_PORT=
 # set your own shadowsocks password
-PASSWORD=""
+export PASSWORD=""
 # set finger print if has ssh key set
-FINGERPRINT=""
+export FINGERPRINT=""
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+if [ "$OSTYPE" = "linux-gnu" ]; then
+  echo "no implementation found for this"
+elif [[ "$OSTYPE" = "darwin"* ]]; then
   # Mac OSX
   source ./create-server-mac
-elif [[ "$OSTYPE" == "cygwin" ]]; then
+elif [ "$OSTYPE" = "cygwin" ]; then
   # POSIX compatibility layer and Linux environment emulation for Windows
-elif [[ "$OSTYPE" == "msys" ]]; then
+  echo "no implementation found for this"
+elif [ "$OSTYPE" = "msys" ]; then
   # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
+  echo "no implementation found for this"
+elif [ "$OSTYPE" = "freebsd"* ]; then
   # ...
+  echo "no implementation found for this"
 else
   # Unknown.
+  echo "no implementation found for this"
 fi
