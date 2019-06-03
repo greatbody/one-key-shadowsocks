@@ -7,7 +7,7 @@ Have terraform installed
 https://www.terraform.io/downloads.html
 
 ## Config
-edit run.sh, edit values below
+In file `run`, edit values below according to your condition
 
 ```bash
 # Generate token here https://cloud.digitalocean.com/account/api/tokens
@@ -28,7 +28,7 @@ copy your ssh public key to path `sshkeys`, and rename it `id_rsa.pub`
 
 ```bash
 cd digitalocean
-./create-server-mac {server-name-you-give}
+./run {server-name-you-give}
 ```
 
 # Reminder
