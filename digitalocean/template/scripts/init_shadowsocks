@@ -1,0 +1,4 @@
+#!/bin/sh
+
+apt-get update -y
+apt install shadowsocks-libev -y

@@ -1,0 +1,7 @@
+# ignore terraform files
+*/.terraform/
+*.tfstate
+*.tfstate.backup
+**/sshkeys/*.*
+# ignore servers local
+digitalocean/servers/

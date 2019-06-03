@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# ======= Path Variables =======
+SERVER=$1
+MYPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SERVER_PATH="$MYPATH/servers/$SERVER"
+MAINTF="$SERVER_PATH/main.tf"
+MAINTF_WITH_FINGERPRINT="$SERVER_PATH/main.fingerprint.tf"
+CONFIGJSON="$SERVER_PATH/scripts/config.json"
+ENVTF="$SERVER_PATH/environments/prod.tfvars"
+
+# ======= Actions =======
+mkdir -p "$SERVER_PATH"
+cp -R ./template/ "$SERVER_PATH"
+
+if [ "$FINGERPRINT" = "" ]; then
+  # use new ssh key
+  rm "$MAINTF_WITH_FINGERPRINT"
+else
+  # use existing fingerprint
+  rm "$MAINTF"
+fi
+
+sed -i '' "s/DROPLET_NAME/${SERVER}/g" "$MAINTF"
+sed -i '' "s/DROPLET_REGION/${DROPLET_REGION}/g" "$MAINTF"
+sed -i '' "s/SERVER_PORT/${SERVER_PORT}/g" "$CONFIGJSON"
+sed -i '' "s/PASSWORD/${PASSWORD}/g" "$CONFIGJSON"
+sed -i '' "s/DO_TOKEN/${DO_TOKEN}/g" "$ENVTF"
+sed -i '' "s/FINGERPRINT/${FINGERPRINT}/g" "$ENVTF"
+
+cd "$SERVER_PATH/"
+
+terraform init -input=false
+terraform apply -auto-approve -var-file=environments/prod.tfvars -input=false
+
+echo "Enjoy using this HAHA."
