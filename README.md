@@ -2,9 +2,20 @@
 
 ## Pre-requirement
 
-Have terraform installed
+> terraform
 
 https://www.terraform.io/downloads.html
+
+> ssh
+
+Generate an ssh key is important.
+
+https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+Please generate an sshkey using the above link as an guide. Copy the *.pub file to ./template/sshkeys, and rename it to `id_rsa.pub`
+
+> Firewall
+
 
 ## Config
 In file `run`, edit values below according to your condition
