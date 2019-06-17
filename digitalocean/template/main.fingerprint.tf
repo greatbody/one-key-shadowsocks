@@ -21,11 +21,21 @@ resource "digitalocean_droplet" "web" {
   provisioner "file" {
     source      = "./scripts/init_shadowsocks"
     destination = "/tmp/init_shadowsocks"
+
+    connection {
+      type     = "ssh"
+      user     = "root"
+    }
   }
 
   provisioner "file" {
     source      = "./scripts/config.json"
     destination = "/tmp/config.json"
+
+    connection {
+      type     = "ssh"
+      user     = "root"
+    }
   }
 
   provisioner "remote-exec" {
